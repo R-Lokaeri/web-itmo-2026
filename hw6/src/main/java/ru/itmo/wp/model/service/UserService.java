@@ -15,7 +15,7 @@ public class UserService {
 
     private final UserRepository userRepository = new UserRepositoryImpl();
 
-    public void validateRegistration(User user, String password) throws ValidationException {
+    public void validateRegistration(User user, String password, String passwordConfirmation) throws ValidationException {
         if (Strings.isNullOrEmpty(user.getLogin())) {
             throw new ValidationException("Login is required");
         }
@@ -37,6 +37,10 @@ public class UserService {
         }
         if (password.length() > 64) {
             throw new ValidationException("Password can't be longer than 64 characters");
+        }
+
+        if (!passwordConfirmation.equals(password)) {
+            throw new ValidationException("Password and password confirmation don't match");
         }
     }
 

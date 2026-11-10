@@ -7,6 +7,7 @@ public class User implements Serializable {
     private long id;
     private String login;
     private Date creationTime;
+    private String email;
 
     public long getId() {
         return id;
@@ -20,6 +21,10 @@ public class User implements Serializable {
         return login;
     }
 
+    public String getEmail() {
+        return email;
+    }
+
     public void setLogin(String login) {
         this.login = login;
     }
@@ -31,4 +36,6 @@ public class User implements Serializable {
     public void setCreationTime(Date creationTime) {
         this.creationTime = creationTime;
     }
+
+    public void setEmail(String email) { this.email = email; }
 }

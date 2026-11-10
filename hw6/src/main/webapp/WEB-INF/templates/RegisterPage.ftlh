@@ -25,6 +25,15 @@
                         <input id="password" name="password" type="password" value="${password!}"/>
                     </div>
                 </div>
+                <div class="field">
+                    <div class="name">
+                        <label for="passwordConfirmation">Password Confirmation</label>
+                    </div>
+                    <div class="value">
+                        <input id="passwordConfirmation" name="passwordConfirmation"
+                        type="password" value="${passwordConfirmation!}"/>
+                    </div>
+                </div>
                 <#if error??>
                     <div class="error">
                         ${error!}

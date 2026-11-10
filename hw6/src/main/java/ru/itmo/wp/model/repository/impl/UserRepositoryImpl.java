@@ -92,6 +92,9 @@ public class UserRepositoryImpl implements UserRepository {
                 case "creationTime":
                     user.setCreationTime(resultSet.getTimestamp(i));
                     break;
+                case "email":
+                    user.setEmail(resultSet.getString(i));
+                    break;
                 default:
                     // No operations.
             }
@@ -104,11 +107,12 @@ public class UserRepositoryImpl implements UserRepository {
     public void save(User user, String passwordSha) {
         try (Connection connection = DATA_SOURCE.getConnection()) {
             try (PreparedStatement statement = connection.prepareStatement(
-                    "INSERT INTO `User` (`login`, `passwordSha`, `creationTime`) VALUES (?, ?, NOW())",
+                    "INSERT INTO `User` (`login`, `passwordSha`, `email`, `creationTime`) VALUES (?, ?, ?, NOW())",
                     Statement.RETURN_GENERATED_KEYS
             )) {
                 statement.setString(1, user.getLogin());
                 statement.setString(2, passwordSha);
+                statement.setString(3, user.getEmail());
                 if (statement.executeUpdate() != 1) {
                     throw new RepositoryException("Can't save User.");
                 } else {
