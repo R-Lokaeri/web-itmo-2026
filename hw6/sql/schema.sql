@@ -10,3 +10,5 @@ CREATE TABLE `User` (
     PRIMARY KEY (`id`),
     UNIQUE KEY `uk_User_login` (`login`)
 ) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4;
+ALTER TABLE `User` ADD COLUMN `email` VARCHAR(255) NULL;
+ALTER TABLE `User` ADD UNIQUE KEY `uk_User_email` (`email`);

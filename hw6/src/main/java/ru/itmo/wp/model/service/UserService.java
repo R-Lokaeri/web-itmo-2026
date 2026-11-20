@@ -39,8 +39,24 @@ public class UserService {
             throw new ValidationException("Password can't be longer than 64 characters");
         }
 
+        if (Strings.isNullOrEmpty(passwordConfirmation)) {
+            throw new ValidationException("Password confirmation is required");
+        }
         if (!passwordConfirmation.equals(password)) {
             throw new ValidationException("Password and password confirmation don't match");
+        }
+
+        if (Strings.isNullOrEmpty(user.getEmail())) {
+            throw new ValidationException("Email is required");
+        }
+        if (user.getEmail().length() > 255) {
+            throw new ValidationException("Email can't be longer than 255 characters");
+        }
+        if (user.getEmail().chars().filter(c -> c == '@').count() != 1) {
+            throw new ValidationException("Email must contain exactly one '@' character");
+        }
+        if (userRepository.findByEmail(user.getEmail()) != null) {
+            throw new ValidationException("Email is already in use");
         }
     }
 

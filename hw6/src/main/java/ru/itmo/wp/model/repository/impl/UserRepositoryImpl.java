@@ -48,6 +48,20 @@ public class UserRepositoryImpl implements UserRepository {
     }
 
     @Override
+    public User findByEmail(String email) {
+        try (Connection connection = DATA_SOURCE.getConnection()) {
+            try (PreparedStatement statement = connection.prepareStatement("SELECT * FROM `User` WHERE `email`=?")) {
+                statement.setString(1, email);
+                try (ResultSet resultSet = statement.executeQuery()) {
+                    return toUser(statement.getMetaData(), resultSet);
+                }
+            }
+        } catch (SQLException e) {
+            throw new RepositoryException("Can't find User.", e);
+        }
+    }
+
+    @Override
     public User findByLoginAndPasswordSha(String login, String passwordSha) {
         try (Connection connection = DATA_SOURCE.getConnection()) {
             try (PreparedStatement statement = connection.prepareStatement(
