@@ -41,6 +41,7 @@
     </header>
     <div class="middle">
         <aside>
+            
             <#list notices as notice>
                 <section>
                     <div class="header">Notice ${notice.id}</div>

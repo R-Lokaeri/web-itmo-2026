@@ -16,9 +16,7 @@
                             at ${comment.creation_time}
                         </span>
                     </div>
-                    <div class="content">
-                        ${comment.text}
-                    </div>
+                    <div class="content">${comment.text}</div>
                 </div>
             </#list>
         </div>

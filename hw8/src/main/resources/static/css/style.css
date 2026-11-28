@@ -164,6 +164,7 @@ aside section .footer a:after {
 
 .comment .content {
     font-size: 1rem;
+    white-space: pre-line;
 }
 
 

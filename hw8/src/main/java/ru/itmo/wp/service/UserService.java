@@ -12,6 +12,7 @@ import ru.itmo.wp.repository.TagRepository;
 import ru.itmo.wp.repository.UserRepository;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 
 @Service
@@ -72,15 +73,19 @@ public class UserService {
 
         String tags = postForm.getTags().trim();
         List<Tag> postTags = new ArrayList<>();
+        HashSet<String> usedTags = new HashSet<>();
         if (!tags.isEmpty()) {
             String[] tagArray = tags.split("\\s+");
             for (String tagName : tagArray) {
-                Tag tag = tagRepository.findByName(tagName);
-                if (tag == null) {
-                    tag = new Tag();
-                    tag.setName(tagName);
+                if (!usedTags.contains(tagName)) {
+                    usedTags.add(tagName);
+                    Tag tag = tagRepository.findByName(tagName);
+                    if (tag == null) {
+                        tag = new Tag();
+                        tag.setName(tagName);
+                    }
+                    postTags.add(tag);
                 }
-                postTags.add(tag);
             }
         }
         post.setTags(postTags);
