@@ -25,6 +25,11 @@ main article .body p:last-child {
     margin: 0;
 }
 
+main article .tag {
+    color: #888;
+    font-size: 0.8rem;
+}
+
 main article .attachment {
     padding: 0;
     margin: 0.5rem 0 0 0;

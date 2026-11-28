@@ -1,5 +1,3 @@
-<#-- @ftlvariable name="post" type="ru.itmo.wp.domain.Post" -->
-
 <#import "/spring.ftl" as spring>
 <#import "commons.ftlh" as c>
 
@@ -14,18 +12,27 @@
                         <label for="title">Title</label>
                     </div>
                     <div class="value">
-                        <input autofocus id="title" name="title" value="${post.title!}"/>
+                        <input autofocus id="title" name="title" value="${postForm.title!}"/>
                     </div>
-                    <@c.error "post.title"/>
+                    <@c.error "postForm.title"/>
                 </div>
                 <div class="field">
                     <div class="name">
                         <label for="text">Text</label>
                     </div>
                     <div class="value">
-                        <textarea id="text" name="text">${post.text!}</textarea>
+                        <textarea id="text" name="text">${postForm.text!}</textarea>
                     </div>
-                    <@c.error "post.text"/>
+                    <@c.error "postForm.text"/>
+                </div>
+                <div class="field">
+                    <div class="name">
+                        <label for="tags">Tags</label>
+                    </div>
+                    <div class="value">
+                        <input id="tags" name="tags" value="${postForm.tags!}"/>
+                    </div>
+                    <@c.error "postForm.tags"/>
                 </div>
                 <div class="button-field">
                     <input type="submit" value="Write">

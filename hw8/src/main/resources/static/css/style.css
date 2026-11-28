@@ -138,3 +138,32 @@ aside section .footer a:after {
     background-color: var(--message-background-color);
     text-align: center;
 }
+
+.comments .caption {
+    color: var(--caption-color);
+    font-size: 1.8em;
+    margin-bottom: 1em;
+}
+
+.comment {
+    margin: 0.5em;
+}
+
+.comment .info {
+    font-size: 0.8em;
+}
+
+.comment .info .time {
+    color: var(--border-color);
+}
+
+.comment .info .author {
+    color: var(--caption-color);
+    font-weight: bold;
+}
+
+.comment .content {
+    font-size: 1rem;
+}
+
+
